@@ -18,6 +18,8 @@ class MessageController extends Controller
 
         $message = Message::create($validated);
 
-        MessageEvent::dispatch(json_encode($message));
+        MessageEvent::dispatch(json_encode($message->load('receiver')));
+
+        return response()->json(['message_id' => $message->id]);
     }
 }

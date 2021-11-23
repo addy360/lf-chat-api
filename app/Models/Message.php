@@ -15,4 +15,9 @@ class Message extends Model
         "to_user",
         "from_user",
     ];
+
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, "to_user", 'id');
+    }
 }
